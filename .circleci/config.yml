@@ -5,8 +5,8 @@ workflows:
     jobs:
       - build:
           context:
-          - docker-username
-          - docker-password
+          - docker username
+          - docker password
 
 jobs:
   build:
