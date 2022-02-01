@@ -1,0 +1,20 @@
+version: 2.1
+
+workflows:
+  my-workflow:
+    jobs:
+      - build:
+          context:
+          - docker-username
+          - docker-password
+
+jobs:
+  build:
+    docker:
+      - image: cimg/base
+        auth:
+          username: $DOCKERHUB_USER
+          password: $DOCKERHUB_PASSWORD
+    steps:
+      - checkout
+      - run: echo "hello world"
