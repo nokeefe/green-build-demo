@@ -1,13 +1,5 @@
 version: 2.1
 
-workflows:
-  my-workflow:
-    jobs:
-      - build:
-          context:
-          - docker username
-          - docker password
-
 jobs:
   build:
     docker:
@@ -19,3 +11,24 @@ jobs:
       - checkout
       - run: echo "hello world"
       - run: echo "test echo for demo!"
+  test:
+    docker:
+      - image: cimg/base:edge
+        auth:
+          username: $DOCKERHUB_USER
+          password: $DOCKERHUB_PASSWORD
+    steps:
+      - checkout
+      - run: echo "This is the first test statement"
+
+workflows:
+  build_and_test:
+    jobs:
+      - build:
+          context:
+          - docker username
+          - docker password
+      - test:
+          context:
+            - docker username
+            - docker password
