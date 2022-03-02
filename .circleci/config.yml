@@ -22,6 +22,7 @@ jobs:
       - run: echo "This is the first test statement"
       - run: echo "This is the second test statement"
       - run: echo "This is the third test statement"
+      - run: echo "this is an addition test for a live demo!"
       -run: echo "This will be an error!"
 
 workflows:
