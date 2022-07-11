@@ -19,7 +19,7 @@ jobs:
           password: $DOCKERHUB_PASSWORD
     steps:
       - checkout
-      - run: echo "This is the first test statement"
+      - run: echo "This is the first test statement!"
 workflows:
   build_and_test:
     jobs:
