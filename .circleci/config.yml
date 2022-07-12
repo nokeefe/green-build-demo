@@ -20,6 +20,15 @@ jobs:
     steps:
       - checkout
       - run: echo "This is the first test statement!"
+  second_workflow_test:
+    docker:
+      - image: cimg/base:edge
+        auth:
+          username: $DOCKERHUB_USER
+          password: $DOCKERHUB_PASSWORD
+    steps:
+      - checkout
+      - run: echo "This is the last workflow!"
 workflows:
   build_and_test:
     jobs:
@@ -29,5 +38,11 @@ workflows:
           - docker password
       - test:
           context:
+            - docker username
+            - docker password
+  second_workflow:
+      jobs:
+        - second_workflow_test:
+            context:
             - docker username
             - docker password
